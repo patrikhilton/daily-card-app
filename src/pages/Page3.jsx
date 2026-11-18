@@ -1,6 +1,7 @@
 import './Page3.scss' // connects the style file to this page. Without it, Page 3 has no colours or layout.
 
-function Page3() {
+// "username" comes from App.jsx (a prop), so the name is written in one place only.
+function Page3({ username }) {
   // Fake numbers for now (Sprint 1). Later they come from the logged-in user.
   const collected = 12 // cards in the album
   const total = 22 // all Major Arcana cards
@@ -13,18 +14,27 @@ function Page3() {
   return (
     <section className="draw">
       <div className="draw__greeting">
-        <h2 className="draw__title">Good morning!</h2>
-        <p className="draw__date">Wednesday 18 November</p>
+        <h2 className="draw__title">
+          Good morning, <span className="draw__username">{username}</span>!
+        </h2>
+        <p className="draw__date">Wednesday 18 November 2026</p>
       </div>
 
+      {/* Cards, button and hint: in the middle, above the album */}
       <div className="draw__deck">
+        {/* Instruction: tells the player what to do */}
+        <p className="draw__instruction">
+          Take a slow breath and think about your day.
+          <br />
+          Then pick the card that calls to you.
+        </p>
         <div className="draw__cards">
           <div className="draw__card-back">★</div>
           <div className="draw__card-back">★</div>
           <div className="draw__card-back">★</div>
         </div>
         <button className="draw__button">Draw today's card</button>
-        <p className="draw__hint">One card a day</p>
+        <p className="draw__hint">You can draw one new card each day</p>
       </div>
 
       <div className="draw__stats">

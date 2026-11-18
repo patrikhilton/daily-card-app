@@ -3,8 +3,8 @@ import './ProfileMenu.scss' // styles for the profile button and menu
 
 // Profile button (top right, next to "Tarot 22") with a small menu.
 // It lives in its own file so every page can use it.
-function ProfileMenu() {
-  const username = 'Qiqi' // later: the logged-in user (Tharanga's part)
+// "username" comes from App.jsx (a prop), so the name is written in one place only.
+function ProfileMenu({ username }) {
   const initial = username[0].toUpperCase() // first letter, e.g. "Q"
 
   // Is the menu open? Starts closed (false).

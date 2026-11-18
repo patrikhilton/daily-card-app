@@ -10,17 +10,46 @@
   gap: 12px; /* space between title and profile on small phones */
 }
 
-/* App title "Tarot 22" */
+/* App title "Tarot 22": ornate capitals like the lettering on old tarot cards */
 .app-title {
   margin: 0;
-  font-family: "Cinzel", Georgia, serif; /* same heading font as "Good morning!" */
+  font-family: "Cinzel Decorative", "Cinzel", Georgia, serif; /* ancient, decorative letters */
+  font-size: 40px; /* phone */
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em; /* a little space between letters, like carved text */
   color: #D4AF37; /* gold = special (same as $gold) */
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.35); /* soft gold glow, like candlelight */
 }
 
 /* Tagline under the title: "One card. One minute. One calm reflection." */
 .app-tagline {
-  margin: 4px 0 0; /* small space above */
+  margin: 6px 0 0; /* small space above */
+  font-family: "Cormorant Garamond", Georgia, serif; /* elegant old-book letters */
+  font-style: italic;
+  font-size: 19px; /* phone */
+  font-weight: 500;
   color: #B9A7E0; /* lavender = less important info (same as $lavender) */
+}
+
+/* Thin line between the title row and the page */
+.app-divider {
+  width: calc(100% - 32px); /* leaves 16px on each side, like the text */
+  max-width: 868px; /* 900px page minus the 2 × 16px side space */
+  margin: 20px auto 0; /* space above, centred */
+  border: none; /* remove the browser's default 3D line */
+  border-top: 1px solid rgba(212, 175, 55, 0.35); /* thin, soft gold ($gold, see-through) */
+}
+
+/* Tablet and laptop (768px and wider): bigger title and tagline */
+@media (min-width: 768px) {
+  .app-title {
+    font-size: 56px;
+  }
+
+  .app-tagline {
+    font-size: 22px;
+  }
 }
 
 /* Every page (Page 3, My album, Page 6...): same width and side space,
