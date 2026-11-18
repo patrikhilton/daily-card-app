@@ -1,0 +1,32 @@
+/* Title row: "Tarot 22" + tagline on the left, profile button on the right.
+   Same width and side space as the pages below, so everything lines up. */
+.app-top {
+  max-width: 900px; /* same as the pages */
+  margin: 0 auto; /* centres the row on wide screens */
+  padding: 24px 16px 0; /* same side space as the pages */
+  display: flex; /* title and profile side by side */
+  justify-content: space-between; /* title left, profile right */
+  align-items: center; /* profile lines up with the middle of the title block */
+  gap: 12px; /* space between title and profile on small phones */
+}
+
+/* App title "Tarot 22" */
+.app-title {
+  margin: 0;
+  font-family: "Cinzel", Georgia, serif; /* same heading font as "Good morning!" */
+  color: #D4AF37; /* gold = special (same as $gold) */
+}
+
+/* Tagline under the title: "One card. One minute. One calm reflection." */
+.app-tagline {
+  margin: 4px 0 0; /* small space above */
+  color: #B9A7E0; /* lavender = less important info (same as $lavender) */
+}
+
+/* Every page (Page 3, My album, Page 6...): same width and side space,
+   so all pages line up with the title */
+main > section {
+  max-width: 900px; /* same width as the title row */
+  margin: 0 auto; /* centres the page on wide screens */
+  padding: 24px 16px; /* same side space as the title row */
+}

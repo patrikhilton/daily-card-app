@@ -14,6 +14,8 @@
   padding: 24px 16px;
   text-align: center;
 
+  // (The profile button styles moved to components/ProfileMenu.scss)
+
   &__greeting {
     grid-area: greeting;
   }

@@ -8,6 +8,7 @@ function Page3() {
   const percent = (collected / total) * 100 // how full the progress bar is
   const streak = 3 // days in a row the player drew a card
   const dayWord = streak === 1 ? 'day' : 'days' // "1 day" but "3 days"
+  // The profile button moved to components/ProfileMenu.jsx (top right, next to "Tarot 22")
 
   return (
     <section className="draw">
