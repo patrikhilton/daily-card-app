@@ -1,0 +1,113 @@
+.draw {
+  display: grid;
+  gap: 16px;
+  grid-template-areas: "greeting" "deck" "stats";
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  text-align: center;
+}
+.draw__greeting {
+  grid-area: greeting;
+}
+.draw__title {
+  margin: 0;
+  font-family: "Cinzel", Georgia, serif;
+  color: #D4AF37;
+}
+.draw__date {
+  margin: 4px 0 0;
+  color: #B9A7E0;
+}
+.draw__deck {
+  grid-area: deck;
+}
+.draw__cards {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.draw__card-back {
+  width: 90px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #D4AF37;
+  background: #5B3A6B;
+  border: 2px solid #D4AF37;
+  border-radius: 12px;
+}
+.draw__button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2B2550;
+  background: #D4AF37;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.draw__hint {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #B9A7E0;
+}
+.draw__stats {
+  grid-area: stats;
+  display: flex;
+  gap: 8px;
+}
+.draw__box {
+  flex: 1;
+  margin: 0;
+  padding: 10px;
+  background: #5B3A6B;
+  border-radius: 8px;
+}
+.draw__album-text {
+  margin: 0;
+  color: #D4AF37;
+}
+.draw__progress {
+  height: 6px;
+  margin: 8px 0;
+  background: #2B2550;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.draw__progress-fill {
+  height: 100%;
+  background: #D4AF37;
+}
+.draw__album-left {
+  margin: 0;
+  font-size: 14px;
+  color: #B9A7E0;
+}
+.draw__streak-text {
+  margin: 0;
+  font-size: 18px;
+  color: #D4AF37;
+}
+.draw__streak-hint {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #B9A7E0;
+}
+@media (min-width: 768px) {
+  .draw {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "greeting deck" "stats    deck";
+    align-items: center;
+    text-align: left;
+  }
+  .draw__deck {
+    text-align: center;
+  }
+  .draw__stats {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=Page3.css.map */

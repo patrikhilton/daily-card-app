@@ -33,10 +33,17 @@
     grid-area: deck;
   }
 
+  // The 3 face-down cards in a row
+  &__cards {
+    display: flex; // puts the 3 cards side by side in a row
+    justify-content: center; // keeps the row in the middle of the screen
+    gap: 8px; // space between the cards
+    margin-bottom: 16px; // space between the cards and the button
+  }
+
   &__card-back {
-    width: 120px;
-    height: 190px;
-    margin: 0 auto 16px;
+    width: 90px;
+    height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,6 +83,44 @@
     padding: 10px;
     background: $plum;
     border-radius: 8px;
+  }
+
+  // Album progress: "Album 8 / 22", bar, "14 new cards left"
+  &__album-text {
+    margin: 0;
+    color: $gold; // gold = important info
+  }
+
+  &__progress {
+    height: 6px; // thin bar
+    margin: 8px 0; // space above and below the bar
+    background: $navy; // empty part of the bar
+    border-radius: 3px; // round ends
+    overflow: hidden; // keeps the gold part inside the round ends
+  }
+
+  &__progress-fill {
+    height: 100%; // same height as the bar
+    background: $gold; // filled part of the bar
+  }
+
+  &__album-left {
+    margin: 0;
+    font-size: 14px;
+    color: $lavender; // lavender = less important info
+  }
+
+  // Streak: "🔥 3 days in a row" + a small reminder
+  &__streak-text {
+    margin: 0;
+    font-size: 18px; // a bit bigger: it's a reward
+    color: $gold; // gold = important info
+  }
+
+  &__streak-hint {
+    margin: 4px 0 0; // small space above
+    font-size: 14px;
+    color: $lavender; // lavender = less important info
   }
 
   // Tablet and desktop: two columns side by side
