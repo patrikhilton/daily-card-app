@@ -1,0 +1,26 @@
+// The 22 Major Arcana cards, in order.
+
+export const CARDS = [
+  { id: "ar00", number: 0, numeral: "0", name: "The Fool" },
+  { id: "ar01", number: 1, numeral: "I", name: "The Magician" },
+  { id: "ar02", number: 2, numeral: "II", name: "The High Priestess" },
+  { id: "ar03", number: 3, numeral: "III", name: "The Empress" },
+  { id: "ar04", number: 4, numeral: "IV", name: "The Emperor" },
+  { id: "ar05", number: 5, numeral: "V", name: "The Hierophant" },
+  { id: "ar06", number: 6, numeral: "VI", name: "The Lovers" },
+  { id: "ar07", number: 7, numeral: "VII", name: "The Chariot" },
+  { id: "ar08", number: 8, numeral: "VIII", name: "Strength" },
+  { id: "ar09", number: 9, numeral: "IX", name: "The Hermit" },
+  { id: "ar10", number: 10, numeral: "X", name: "Wheel of Fortune" },
+  { id: "ar11", number: 11, numeral: "XI", name: "Justice" },
+  { id: "ar12", number: 12, numeral: "XII", name: "The Hanged Man" },
+  { id: "ar13", number: 13, numeral: "XIII", name: "Death" },
+  { id: "ar14", number: 14, numeral: "XIV", name: "Temperance" },
+  { id: "ar15", number: 15, numeral: "XV", name: "The Devil" },
+  { id: "ar16", number: 16, numeral: "XVI", name: "The Tower" },
+  { id: "ar17", number: 17, numeral: "XVII", name: "The Star" },
+  { id: "ar18", number: 18, numeral: "XVIII", name: "The Moon" },
+  { id: "ar19", number: 19, numeral: "XIX", name: "The Sun" },
+  { id: "ar20", number: 20, numeral: "XX", name: "Judgement" },
+  { id: "ar21", number: 21, numeral: "XXI", name: "The World" },
+];

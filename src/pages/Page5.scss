@@ -1,0 +1,22 @@
+@use "../styles/variables" as *;
+
+.album {
+  padding: 24px 16px;
+
+  &__title {
+    margin: 0 0 16px;
+    font-family: $font-heading;
+    color: $gold;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    padding: 8px 0;
+    border-bottom: 1px solid $plum;
+  }
+}
