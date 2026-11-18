@@ -1,0 +1,23 @@
+// Colours
+$navy: #2B2550;
+$plum: #5B3A6B;
+$gold: #D4AF37;
+$lavender: #B9A7E0;
+$cream: #F5EFE0;
+$coral: #F0997B;
+
+// Fonts
+$font-heading: "Cinzel", Georgia, serif;
+$font-body: "Inter", system-ui, sans-serif;
+
+// Breakpoints
+$tablet: 768px;
+$desktop: 1024px;
+
+@mixin tablet {
+  @media (min-width: $tablet) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop) { @content; }
+}
