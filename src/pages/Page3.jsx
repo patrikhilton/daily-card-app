@@ -1,7 +1,9 @@
 import './Page3.scss' // connects the style file to this page. Without it, Page 3 has no colours or layout.
 
-// "username" comes from App.jsx (a prop), so the name is written in one place only.
-function Page3({ username }) {
+// Props from App.jsx:
+// - username: the player's name (written in one place only)
+// - onDraw: runs when a card or the Draw button is clicked, and App then shows Page 4
+function Page3({ username, onDraw }) {
   // Fake numbers for now (Sprint 1). Later they come from the logged-in user.
   const collected = 12 // cards in the album
   const total = 22 // all Major Arcana cards
@@ -29,11 +31,12 @@ function Page3({ username }) {
           Then pick the card that calls to you.
         </p>
         <div className="draw__cards">
-          <div className="draw__card-back">★</div>
-          <div className="draw__card-back">★</div>
-          <div className="draw__card-back">★</div>
+          {/* Each card is a button, so it can be clicked or chosen with the keyboard */}
+          <button className="draw__card-back" onClick={onDraw} aria-label="Pick card 1">★</button>
+          <button className="draw__card-back" onClick={onDraw} aria-label="Pick card 2">★</button>
+          <button className="draw__card-back" onClick={onDraw} aria-label="Pick card 3">★</button>
         </div>
-        <button className="draw__button">Draw today's card</button>
+        <button className="draw__button" onClick={onDraw}>Draw today's card</button>
         <p className="draw__hint">You can draw one new card each day</p>
       </div>
 

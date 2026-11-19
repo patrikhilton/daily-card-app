@@ -78,7 +78,14 @@
     background: $plum;
     border: 2px solid $gold;
     border-radius: 12px;
+    padding: 0; // the card is a <button>: remove the browser's button padding
+    font-family: inherit; // ...and its default font
     cursor: pointer; // hand cursor: "you can pick this card"
+
+    &:focus-visible {
+      outline: 2px solid $lavender; // ring when chosen with the Tab key
+      outline-offset: 4px;
+    }
     transition: transform 0.25s ease, box-shadow 0.25s ease; // smooth change, not a jump
 
     // Hover effect "lift and glow": the card rises, grows and glows gold
