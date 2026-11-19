@@ -8,12 +8,12 @@ import './Page4.scss' // styles for this page
 
 // Props from App.jsx:
 // - cardId: the id of the drawn card, e.g. "ar17" for The Star
+// - collected / total: cards in the album after this draw, e.g. 13 of 22
 // - onBack: shows Page 3 again (not used in this design yet; refresh the page to go back while testing)
-function Page4({ cardId, onBack }) {
+function Page4({ cardId, collected, total, onBack }) {
   const card = CARDS.find((c) => c.id === cardId) // the drawn card (name + number)
   const reading = READINGS[card.id] // this card's short meaning + question
-  const collected = 13 // fake: album count after this card (later from the saved user)
-  const total = CARDS.length // 22
+  const albumComplete = collected === total // true when all 22 cards are collected
 
   const [entry, setEntry] = useState('') // what the player types in the journal box
   const [saved, setSaved] = useState(false) // true after "Save to journal"
@@ -60,6 +60,23 @@ function Page4({ cardId, onBack }) {
 
   return (
     <section className="result">
+      {/* Celebration when the album is complete (22 / 22) */}
+      {albumComplete && (
+        <div className="result__celebrate" role="status">
+          <div className="result__stars" aria-hidden="true">
+            <span>✦</span>
+            <span>★</span>
+            <span>✦</span>
+            <span>★</span>
+            <span>✦</span>
+          </div>
+          <p className="result__celebrate-title">Album complete!</p>
+          <p className="result__celebrate-text">
+            You collected all {total} cards. That's {total} calm moments just for you. 🌟
+          </p>
+        </div>
+      )}
+
       {/* Reward badge, top right */}
       <p className="result__badge">
         New card · {collected} / {total}

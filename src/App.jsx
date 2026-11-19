@@ -1,4 +1,4 @@
-import { useState } from 'react' // lets App remember "has the player drawn a card?"
+import { useState } from 'react' // lets App remember the drawn card and the album
 import { CARDS } from './data/cards' // the 22 Major Arcana cards
 import Header from './components/Header'
 import ProfileMenu from './components/ProfileMenu'
@@ -16,10 +16,22 @@ function App() {
   // Which card was drawn? null = none yet, so Page 3 shows. A card id (e.g. "ar17") = Page 4 shows.
   const [drawnId, setDrawnId] = useState(null)
 
-  // Picks one of the 22 cards at random (Sprint 2: only cards not yet in the album, plus the API)
+  // The album: ids of the cards the player has collected.
+  // Fake for now: the first 12 cards. Sprint 3: loaded from the saved user (localStorage).
+  // To test the 22/22 celebration, change 12 to 21, draw a card, and the album is complete.
+  const [collectedIds, setCollectedIds] = useState(CARDS.slice(0, 21).map((c) => c.id))
+
+  // Draws a card the player doesn't have yet, so the album fills up in 22 draws
   function drawCard() {
-    const randomIndex = Math.floor(Math.random() * CARDS.length) // a number from 0 to 21
-    setDrawnId(CARDS[randomIndex].id)
+    const newCards = CARDS.filter((c) => !collectedIds.includes(c.id)) // cards not in the album yet
+    const choices = newCards.length > 0 ? newCards : CARDS // album full? then any card
+    const randomIndex = Math.floor(Math.random() * choices.length) // a random position in the list
+    const card = choices[randomIndex]
+
+    setDrawnId(card.id)
+    if (!collectedIds.includes(card.id)) {
+      setCollectedIds([...collectedIds, card.id]) // add the new card to the album
+    }
   }
 
   return (
@@ -38,9 +50,19 @@ function App() {
         <hr className="app-divider" />
         {/* Page 3 or Page 4 in the same place: picking a card switches to the result */}
         {drawnId ? (
-          <Page4 cardId={drawnId} onBack={() => setDrawnId(null)} />
+          <Page4
+            cardId={drawnId}
+            collected={collectedIds.length}
+            total={CARDS.length}
+            onBack={() => setDrawnId(null)}
+          />
         ) : (
-          <Page3 username={username} onDraw={drawCard} />
+          <Page3
+            username={username}
+            collected={collectedIds.length}
+            total={CARDS.length}
+            onDraw={drawCard}
+          />
         )}
         <Page5 />
         <Page6 />

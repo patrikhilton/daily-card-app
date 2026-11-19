@@ -2,14 +2,12 @@ import './Page3.scss' // connects the style file to this page. Without it, Page 
 
 // Props from App.jsx:
 // - username: the player's name (written in one place only)
+// - collected / total: cards in the album, e.g. 12 of 22 (App keeps the album)
 // - onDraw: runs when a card or the Draw button is clicked, and App then shows Page 4
-function Page3({ username, onDraw }) {
-  // Fake numbers for now (Sprint 1). Later they come from the logged-in user.
-  const collected = 12 // cards in the album
-  const total = 22 // all Major Arcana cards
+function Page3({ username, collected, total, onDraw }) {
   const left = total - collected // cards still to find
   const percent = (collected / total) * 100 // how full the progress bar is
-  const streak = 3 // days in a row the player drew a card
+  const streak = 3 // fake for now: days in a row the player drew a card (later from the saved user)
   const dayWord = streak === 1 ? 'day' : 'days' // "1 day" but "3 days"
   // The profile button moved to components/ProfileMenu.jsx (top right, next to "Tarot 22")
 
