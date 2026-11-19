@@ -1,5 +1,6 @@
-import { useState } from 'react' // lets App remember the drawn card and the album
+import { useState, useEffect } from 'react' // useState = remember, useEffect = save after every change
 import { CARDS } from './data/cards' // the 22 Major Arcana cards
+import { loadProgress, saveProgress, dateKey, yesterdayKey } from './utils/storage' // localStorage helpers
 import Header from './components/Header'
 import ProfileMenu from './components/ProfileMenu'
 import Page3 from './pages/Page3'
@@ -13,26 +14,53 @@ function App() {
   // Written once here, then given to the pages that need it (as a "prop").
   const username = 'Qiqi'
 
-  // Which card was drawn? null = none yet, so Page 3 shows. A card id (e.g. "ar17") = Page 4 shows.
-  const [drawnId, setDrawnId] = useState(null)
+  // The player's saved progress: album, today's draw, streak and journal.
+  // Loaded once from localStorage when the app opens.
+  const [progress, setProgress] = useState(() => loadProgress(username))
 
-  // The album: ids of the cards the player has collected.
-  // Fake for now: the first 12 cards. Sprint 3: loaded from the saved user (localStorage).
-  // To test the 22/22 celebration, change 12 to 21, draw a card, and the album is complete.
-  const [collectedIds, setCollectedIds] = useState(CARDS.slice(0, 21).map((c) => c.id))
+  // Save to localStorage every time the progress changes
+  useEffect(() => {
+    saveProgress(username, progress)
+  }, [username, progress])
+
+  const today = dateKey() // e.g. "2026-11-19"
+  const drewToday = progress.lastDrawDate === today // only one draw per day
+  const drawnId = drewToday ? progress.lastCardId : null // today's card, or null = show Page 3
+  const collectedIds = progress.collectedIds // the album
+
+  // The streak only counts if the last draw was today or yesterday; otherwise it is broken (0)
+  const streakAlive = drewToday || progress.lastDrawDate === yesterdayKey()
+  const streak = streakAlive ? progress.streak : 0
 
   // Draws a card the player doesn't have yet, so the album fills up in 22 draws
   function drawCard() {
+    if (drewToday) return // already drew today: one card a day
+
     const newCards = CARDS.filter((c) => !collectedIds.includes(c.id)) // cards not in the album yet
     const choices = newCards.length > 0 ? newCards : CARDS // album full? then any card
     const randomIndex = Math.floor(Math.random() * choices.length) // a random position in the list
     const card = choices[randomIndex]
 
-    setDrawnId(card.id)
-    if (!collectedIds.includes(card.id)) {
-      setCollectedIds([...collectedIds, card.id]) // add the new card to the album
-    }
+    setProgress({
+      ...progress, // keep everything else (journal etc.)
+      collectedIds: collectedIds.includes(card.id) ? collectedIds : [...collectedIds, card.id], // add new card
+      lastDrawDate: today,
+      lastCardId: card.id,
+      streak: streak + 1, // yesterday too? then +1. Streak was broken? then 0 + 1 = 1
+    })
   }
+
+  // Saves today's journal line (replaces it if the player saves again)
+  function saveJournal(text) {
+    const otherEntries = progress.journal.filter((e) => !(e.date === today && e.cardId === drawnId))
+    setProgress({
+      ...progress,
+      journal: [...otherEntries, { date: today, cardId: drawnId, text }],
+    })
+  }
+
+  // Today's saved journal line, if there is one
+  const todayEntry = progress.journal.find((e) => e.date === today && e.cardId === drawnId)
 
   return (
     <>
@@ -48,19 +76,22 @@ function App() {
         </div>
         {/* Thin line between the title row and the page */}
         <hr className="app-divider" />
-        {/* Page 3 or Page 4 in the same place: picking a card switches to the result */}
+        {/* Page 3 or Page 4 in the same place. After today's draw, Page 4 shows (even after a refresh). */}
         {drawnId ? (
           <Page4
+            key={drawnId} // a new card = a fresh Page 4
             cardId={drawnId}
             collected={collectedIds.length}
             total={CARDS.length}
-            onBack={() => setDrawnId(null)}
+            savedText={todayEntry ? todayEntry.text : ''}
+            onSaveJournal={saveJournal}
           />
         ) : (
           <Page3
             username={username}
             collected={collectedIds.length}
             total={CARDS.length}
+            streak={streak}
             onDraw={drawCard}
           />
         )}

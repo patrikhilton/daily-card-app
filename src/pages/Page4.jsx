@@ -4,19 +4,20 @@ import { READINGS } from '../data/readings' // our own short meaning + question 
 import './Page4.scss' // styles for this page
 
 // Page 4: Card result + journal (matches the prototype)
-// Shows whichever of the 22 cards was drawn on Page 3. Sprint 2: extra details from the tarot API.
+// Shows today's card (drawn on Page 3). The journal line is saved in localStorage by App.
 
 // Props from App.jsx:
 // - cardId: the id of the drawn card, e.g. "ar17" for The Star
 // - collected / total: cards in the album after this draw, e.g. 13 of 22
-// - onBack: shows Page 3 again (not used in this design yet; refresh the page to go back while testing)
-function Page4({ cardId, collected, total, onBack }) {
+// - savedText: today's journal line if it was saved before ('' if not)
+// - onSaveJournal: App saves the line in localStorage
+function Page4({ cardId, collected, total, savedText, onSaveJournal }) {
   const card = CARDS.find((c) => c.id === cardId) // the drawn card (name + number)
   const reading = READINGS[card.id] // this card's short meaning + question
   const albumComplete = collected === total // true when all 22 cards are collected
 
-  const [entry, setEntry] = useState('') // what the player types in the journal box
-  const [saved, setSaved] = useState(false) // true after "Save to journal"
+  const [entry, setEntry] = useState(savedText) // the journal box starts with the saved line, if any
+  const [saved, setSaved] = useState(savedText !== '') // already saved earlier today?
   const [error, setError] = useState('') // message when the box is empty
 
   // "Read more about this card"
@@ -55,7 +56,8 @@ function Page4({ cardId, collected, total, onBack }) {
       return
     }
     setError('')
-    setSaved(true) // Sprint 3: also save it to the user's journal in localStorage
+    onSaveJournal(entry.trim()) // App saves it in localStorage
+    setSaved(true) // button shows "Saved ✓"
   }
 
   return (
