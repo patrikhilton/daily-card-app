@@ -8,6 +8,14 @@ $lavender: #B9A7E0;
 $cream: #F5EFE0;
 $coral: #F0997B;
 
+$bg-navy: #262145;
+$bg-navy-dark: #1c1836;
+$color-gold: #c9a236;
+$color-cream: #f4efe6;
+$color-lavender: #b7a6e0;
+$color-lavender-muted: #9e93c4;
+$color-coral: #e58367;
+
 // Fonts
 $font-heading: "Cinzel", Georgia, serif;
 $font-body: "Inter", system-ui, sans-serif;
@@ -15,11 +23,3 @@ $font-body: "Inter", system-ui, sans-serif;
 // Breakpoints
 $tablet: 768px;
 $desktop: 1024px;
-
-@mixin tablet {
-  @media (min-width: $tablet) { @content; }
-}
-
-@mixin desktop {
-  @media (min-width: $desktop) { @content; }
-}
