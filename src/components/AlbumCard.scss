@@ -1,7 +1,7 @@
 @use "../styles/variables" as *;
 
 .album-card {
-  width: 90px; // Step 6 might change the width.
+    width: 100%;
   aspect-ratio: 2 / 3;
   border-radius: 8px;
   display: flex;
