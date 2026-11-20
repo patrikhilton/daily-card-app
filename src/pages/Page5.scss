@@ -1,12 +1,18 @@
 @use "../styles/variables" as *;
 
 .album {
+  max-width: 900px;
+  margin: 0 auto;
   padding: 24px 16px;
 
   &__title {
     margin: 0 0 16px;
     font-family: $font-heading;
     color: $gold;
+  }
+
+  &__count {
+    margin: 0 0 16px;
   }
 
   &__list {
@@ -18,5 +24,10 @@
   &__item {
     padding: 8px 0;
     border-bottom: 1px solid $plum;
+
+    &--collected {
+      color: $gold;
+      font-weight: 600;
+    }
   }
 }
