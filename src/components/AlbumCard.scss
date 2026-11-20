@@ -1,0 +1,42 @@
+@use "../styles/variables" as *;
+
+.album-card {
+  width: 90px; // Step 6 might change the width.
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px;
+  text-align: center;
+
+  &--collected {
+    background: $cream;
+    color: $navy;
+    border: 2px solid $gold;
+  }
+
+  &--locked {
+    background: $plum;
+    color: $cream;
+    border: 2px dashed rgb(185 167 224 / 60%); 
+  }
+
+  &__numeral {
+    font-family: $font-heading;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  &__name {
+    font-size: 0.6875rem;
+    line-height: 1.2;
+  }
+
+  &__lock {
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+}

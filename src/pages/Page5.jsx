@@ -1,6 +1,7 @@
 import { CARDS } from "../data/cards";
 import { fakeProgress } from "../data/fakeProgress";
 import "./Page5.scss";
+import AlbumCard from "../components/AlbumCard";
 
 function Page5({ collectedIds = fakeProgress.collectedIds }) {
   const collected = new Set(collectedIds);
@@ -13,19 +14,11 @@ function Page5({ collectedIds = fakeProgress.collectedIds }) {
       </p>
 
       <ul className="album__list">
-        {CARDS.map((card) => {
-          const isCollected = collected.has(card.id);
-
-          return (
-            <li
-              key={card.id}
-              className={isCollected ? "album__item album__item--collected" : "album__item"}
-            >
-              {card.numeral} – {card.name}
-              {isCollected && " ✓"}
-            </li>
-          );
-        })}
+        {CARDS.map((card) => (
+          <li key={card.id}>
+            <AlbumCard card={card} isCollected={collected.has(card.id)} />
+          </li>
+        ))}
       </ul>
     </section>
   );
