@@ -10,10 +10,13 @@ function Page5({
   streak = fakeProgress.streak,
   collectedIds = fakeProgress.collectedIds,
   journal = fakeProgress.journal,
+  onGoToDraw,
 }) {
   const [openCard, setOpenCard] = useState(null);
 
   const collected = new Set(collectedIds);
+  const isEmpty = collected.size === 0;
+  const isComplete = collected.size === CARDS.length;
   const openEntry = openCard
     ? journal.find((entry) => entry.cardId === openCard.id)
     : null;
@@ -38,6 +41,23 @@ function Page5({
       </p>
 
       <StreakChip streak={streak} />
+
+      {isEmpty && (
+        <div className="album__message">
+          <p>Your first card is waiting. Draw today's card to start your album.</p>
+          {onGoToDraw && (
+            <button type="button" className="album__button" onClick={onGoToDraw}>
+              Draw today's card
+            </button>
+          )}
+        </div>
+      )}
+
+      {isComplete && (
+        <p className="album__message album__message--complete">
+          Album complete! 22 days of calm minutes. 🌟
+        </p>
+      )}
 
       <ul className="album__list">
         {CARDS.map((card) => (
@@ -78,7 +98,7 @@ function Page5({
 
             <button
               type="button"
-              className="album__close"
+              className="album__button"
               onClick={() => setOpenCard(null)}
               autoFocus
             >
