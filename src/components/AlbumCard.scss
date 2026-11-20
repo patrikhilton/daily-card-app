@@ -1,7 +1,7 @@
 @use "../styles/variables" as *;
 
 .album-card {
-    width: 100%;
+  width: 100%;
   aspect-ratio: 2 / 3;
   border-radius: 8px;
   display: flex;
@@ -11,17 +11,28 @@
   gap: 4px;
   padding: 6px;
   text-align: center;
+  font: inherit;
 
   &--collected {
     background: $cream;
     color: $navy;
     border: 2px solid $gold;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0 12px rgb(212 175 55 / 50%); // soft gold glow
+    }
+
+    &:focus-visible {
+      outline: 3px solid $lavender;
+      outline-offset: 2px;
+    }
   }
 
   &--locked {
     background: $plum;
     color: $cream;
-    border: 2px dashed rgb(185 167 224 / 60%); 
+    border: 2px dashed rgb(185 167 224 / 60%); // lavender at 60%
   }
 
   &__numeral {

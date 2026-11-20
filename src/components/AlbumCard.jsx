@@ -1,6 +1,6 @@
 import "./AlbumCard.scss";
 
-function AlbumCard({ card, isCollected }) {
+function AlbumCard({ card, isCollected, onOpen }) {
   if (!isCollected) {
     return (
       <div className="album-card album-card--locked">
@@ -12,10 +12,14 @@ function AlbumCard({ card, isCollected }) {
   }
 
   return (
-    <div className="album-card album-card--collected">
+    <button
+      type="button"
+      className="album-card album-card--collected"
+      onClick={onOpen}
+    >
       <span className="album-card__numeral">{card.numeral}</span>
       <span className="album-card__name">{card.name}</span>
-    </div>
+    </button>
   );
 }
 
