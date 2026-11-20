@@ -1,11 +1,11 @@
 import React from "react";
-import '../style/PageContainer.scss';
+import '../styles/PageContainer.scss';
 
-const PageContainer = ({ Children }) => {
+const PageContainer = ({ children }) => {
     return (
         <main className="page-container">
             <div className="page-container__card">
-                {Children}
+                {children}
             </div>
         </main>
     );

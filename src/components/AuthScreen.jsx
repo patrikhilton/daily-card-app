@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../styles/AuthScreen';
+import '../styles/AuthScreen.scss';
 
 const AuthScreen = ({ onLoginSuccess }) => {
     //Welcome, Login & Signup
@@ -21,7 +21,7 @@ const AuthScreen = ({ onLoginSuccess }) => {
         setPassword('');
         setConfirmPassword('');
         setShowPassword(false);
-        setConfirmPassword(false);
+        setShowConfirmPassword(false);
         setView(nextView);
     };
 
@@ -35,7 +35,7 @@ const AuthScreen = ({ onLoginSuccess }) => {
         setError('');
 
         //Common Validations
-        if (!username.trim() || !password.trim()) {
+        if (!email.trim() || !password.trim()) {
             setError('Please fill in all fields.');
             return;
         }
@@ -83,7 +83,10 @@ const AuthScreen = ({ onLoginSuccess }) => {
 
             //Update about login to App.jsx
             if (onLoginSuccess) {
-                onLoginSuccess(newUser);
+                onLoginSuccess({
+                    email: newUser.email,
+                    username: newUser.username,
+                });
             }
 
             //alert(`Account created! Welcome, ${newUser.username}`);
@@ -104,7 +107,10 @@ const AuthScreen = ({ onLoginSuccess }) => {
 
             //Update about Login Completed
             if (onLoginSuccess) {
-                onLoginSuccess(foundUser);
+                onLoginSuccess({
+                    email: foundUser.email,
+                    username: foundUser.username,
+                });
             }
             //alert(`Welcome back, ${foundUser.username}!`);
         }
@@ -116,9 +122,9 @@ const AuthScreen = ({ onLoginSuccess }) => {
             {/* 1. Welcome Screen */}
             {view === 'welcome' && (
                 <section className="auth-screen__welcome">
-                    <div className="auth-screen__logo-card" are-hidden="true" />
+                    <div className="auth-screen__logo-card" aria-hidden="true" />
                     <h1 className="auth-screen__title">Mummy's Daily Card</h1>
-                    <p className="auth-screen__subtitle">One calm miniute, just for you</p>
+                    <p className="auth-screen__subtitle">One calm minute, just for you</p>
                     <p className="auth-screen__promise">
                         22 cards <span>.</span> 22days <span>.</span> 1 minute a day
                     </p>
@@ -197,9 +203,9 @@ const AuthScreen = ({ onLoginSuccess }) => {
                             <div className="auth-screen__input-wrapper">
                                 <input
                                     id="password"
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     className="auth-screen__input auth-screen__input--password"
-                                    placeholder="........"
+                                    placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     autoComplete={view === 'login' ? "current-password" : 'new-password'}
@@ -253,7 +259,24 @@ const AuthScreen = ({ onLoginSuccess }) => {
 
                         {error && (
                             <div className="auth-screen__error" role="alert">
-                                <span>⚠</span> {error}
+                                <svg
+                                    className="auth-screen__error-icon"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg>
+                                <span>{error}</span>
                             </div>
                         )}
 
