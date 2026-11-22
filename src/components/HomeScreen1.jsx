@@ -35,6 +35,10 @@ const HomeScreen1 = ({email, username, onLogout}) => {
             </header>
 
             <main className="home-screen__content">
+                
+            </main>
+
+            <footer className="home-screen__footer">
                 <button
                     type="button"
                     className="home-screen__logout-btn"
@@ -42,7 +46,7 @@ const HomeScreen1 = ({email, username, onLogout}) => {
                 >
                     Log out
                 </button>
-            </main>
+            </footer>
         </section>
     );
 };
