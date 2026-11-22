@@ -1,6 +1,6 @@
 import { CARDS } from "../data/cards";
 import { fakeProgress } from "../data/fakeProgress";
-import { formatDate } from "../utils/dates";
+import JournalEntry from "../components/JournalEntry";
 import "./Page6.scss";
 
 function Page6({ journal = fakeProgress.journal }) {
@@ -15,8 +15,8 @@ function Page6({ journal = fakeProgress.journal }) {
           const card = CARDS.find((c) => c.id === entry.cardId);
 
           return (
-            <li key={entry.date} className="journal__item">
-              {formatDate(entry.date)} – {card ? card.name : entry.cardId}: {entry.text}
+            <li key={entry.date}>
+              <JournalEntry entry={entry} card={card} />
             </li>
           );
         })}
