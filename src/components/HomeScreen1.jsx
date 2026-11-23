@@ -15,6 +15,7 @@ const getTimeGreeting = () => {
 const HomeScreen1 = ({email, username, onLogout}) => {
     const greeting = getTimeGreeting();
 
+    // email as a primary key and load users' saved data
     useEffect(() => {
         if (!email) return;
 
@@ -35,7 +36,7 @@ const HomeScreen1 = ({email, username, onLogout}) => {
             </header>
 
             <main className="home-screen__content">
-                
+                {/* Home or Dashbord content */}
             </main>
 
             <footer className="home-screen__footer">
