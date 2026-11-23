@@ -12,3 +12,22 @@ body {
   font-family: $font-body;
   line-height: 1.5;
 }
+
+//Customized scrillbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-navy-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  background: lighten($bg-navy, 10%);
+  border-radius: 4px;
+
+  &:hover {
+    background: $color-lavender-muted;
+  }
+}
