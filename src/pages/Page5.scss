@@ -103,16 +103,7 @@
     font-size: 1.05rem;
   }
 
-  // Shared button: "Close" and "Draw today's card"
-  &__button {
-    min-height: 44px;
-    padding: 0 24px;
-    border: none;
-    border-radius: 999px;
-    background: $lavender;
-    color: $navy;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
+    &__button {
+    @include pill-button;
   }
 }
