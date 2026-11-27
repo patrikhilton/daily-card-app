@@ -7,7 +7,7 @@ import HomeScreen1 from './components/HomeScreen1'
 //import Page6 from './pages/Page6'
 import './App.css'
 
-const SESSION_STORAGE_KEY = 'mumy_active-session';
+const SESSION_STORAGE_KEY = 'tarot22:session';
 
 function App() {
   //If refresh the page session load from the localStorage

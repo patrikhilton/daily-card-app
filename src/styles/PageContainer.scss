@@ -4,8 +4,8 @@
 .page-container {
     min-height: 100vh;
     width: 100%;
-    background-color: $bg-navy;
-    color: $color-cream;
+    background-color: $navy;
+    color: $cream;
     font-family: $font-body;
     display: flex;
     flex-direction: column;
@@ -29,10 +29,10 @@
 
         @include tablet {
             max-width: 440px;
-            background-color: $bg-navy;
+            background-color: $navy;
             padding: 48px 40px;
             border-radius: 32px;
-            border: 1px solid rgba($color-lavender, 0.2);
+            border: 1px solid rgba($lavender, 0.2);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
         }
     }

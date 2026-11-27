@@ -1,5 +1,6 @@
 @use "variables" as *;
 @use 'sass:color';
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap');
 
 * {
   box-sizing: border-box;
@@ -25,7 +26,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: color.adjust($bg-navy, $lightness: 10%);
+  background-color: color.adjust($navy, $lightness: 10%);
   border-radius: 4px;
 
   &:hover {
