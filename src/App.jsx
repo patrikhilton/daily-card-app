@@ -7,6 +7,7 @@ import Page3 from './pages/Page3'
 import Page4 from './pages/Page4'          
 import Page5 from './pages/Page5'
 import Page6 from './pages/Page6'
+import ProfilePage from './pages/ProfilePage'
 import './App.css'
 
 function App() {
@@ -20,6 +21,10 @@ function App() {
   function handleLogout() {
     console.log('Log out clicked: Tharanga\'s login part will handle this')
   }
+
+  // Which page to show: false = home (draw / card / album / journal), true = the profile page on its own.
+  // Later Patrik's router can turn this into a real "/profile" page.
+  const [showProfile, setShowProfile] = useState(false)
 
   // The player's saved progress: album, today's draw, streak and journal.
   // Loaded once from localStorage when the app opens.
@@ -79,10 +84,29 @@ function App() {
             <h1 className="app-title">Tarot 22</h1>
             <p className="app-tagline">One card. One minute. One calm reflection.</p>
           </div>
-          <ProfileMenu username={username} onLogout={handleLogout} />
+          <ProfileMenu
+            username={username}
+            onOpenProfile={() => setShowProfile(true)}
+            onLogout={handleLogout}
+          />
         </div>
         {/* Thin line between the title row and the page */}
         <hr className="app-divider" />
+
+        {showProfile ? (
+          // The profile page on its own, instead of everything else
+          <ProfilePage
+            username={username}
+            email={email}
+            collected={collectedIds.length}
+            total={CARDS.length}
+            streak={streak}
+            journalCount={progress.journal.length}
+            onBack={() => setShowProfile(false)}
+            onLogout={handleLogout}
+          />
+        ) : (
+          <>
         {/* Page 3 or Page 4 in the same place. After today's draw, Page 4 shows (even after a refresh). */}
         {drawnId ? (
           <Page4
@@ -104,6 +128,8 @@ function App() {
         )}
         <Page5 />
         <Page6 />
+          </>
+        )}
       </main>
     </>
   )
