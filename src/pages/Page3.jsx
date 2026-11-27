@@ -1,5 +1,13 @@
 import './Page3.scss' // connects the style file to this page. Without it, Page 3 has no colours or layout.
 
+// Greeting by time of day (Tharanga's function)
+const getTimeGreeting = () => {
+  const hour = new Date().getHours() // 0 to 23
+  if (hour < 12) return 'Good morning' // before 12:00
+  if (hour < 18) return 'Good afternoon' // 12:00 to 17:59
+  return 'Good evening' // from 18:00
+}
+
 // Props from App.jsx:
 // - username: the player's name (written in one place only)
 // - collected / total: cards in the album, e.g. 12 of 22 (App keeps the album)
@@ -21,7 +29,7 @@ function Page3({ username, collected, total, streak, onDraw }) {
     <section className="draw">
       <div className="draw__greeting">
         <h2 className="draw__title">
-          Good morning, <span className="draw__username">{username}</span>!
+          {getTimeGreeting()}, <span className="draw__username">{username}</span>!
         </h2>
         <p className="draw__date">{dateText}</p>
       </div>

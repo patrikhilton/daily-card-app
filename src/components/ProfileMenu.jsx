@@ -3,8 +3,10 @@ import './ProfileMenu.scss' // styles for the profile button and menu
 
 // Profile button (top right, next to "Tarot 22") with a small menu.
 // It lives in its own file so every page can use it.
-// "username" comes from App.jsx (a prop), so the name is written in one place only.
-function ProfileMenu({ username }) {
+// Props from App.jsx:
+// - username: shown on the button (written in one place only)
+// - onLogout: runs when "Log out" is clicked (Tharanga's login part logs the user out)
+function ProfileMenu({ username, onLogout }) {
   const initial = username[0].toUpperCase() // first letter, e.g. "Q"
 
   // Is the menu open? Starts closed (false).
@@ -33,8 +35,15 @@ function ProfileMenu({ username }) {
             </button>
           </li>
           <li>
-            {/* Later: Tharanga connects this to log out */}
-            <button className="profile__item" role="menuitem" onClick={() => setMenuOpen(false)}>
+            {/* Closes the menu, then logs out (App passes Tharanga's handleLogout) */}
+            <button
+              className="profile__item"
+              role="menuitem"
+              onClick={() => {
+                setMenuOpen(false)
+                onLogout()
+              }}
+            >
               🚪 Log out
             </button>
           </li>
