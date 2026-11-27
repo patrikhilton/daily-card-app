@@ -86,9 +86,12 @@ function Page4({ cardId, collected, total, savedText, onSaveJournal }) {
 
       {/* The turned-over card */}
       <div className="result__card">
-        <span className="result__symbol">★</span>
-        <p className="result__name">{card.name}</p>
-        <p className="result__numeral">{card.numeral}</p>
+        {/* The real card picture from public/cards, e.g. /cards/ar17.jpg (Rider-Waite, 1909, public domain) */}
+        <img
+          className="result__image"
+          src={`/cards/${card.id}.jpg`}
+          alt={`${card.numeral} ${card.name} tarot card`} // read aloud by screen readers
+        />
       </div>
 
       {/* Our short, simple meaning (gold) */}

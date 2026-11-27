@@ -109,20 +109,15 @@
     font-weight: 500;
   }
 
-  // The turned-over card: cream face, gold frame
+  // The turned-over card: the real picture in a gold frame
   &__card {
-    width: 180px;
-    height: 260px; // tarot card shape
+    width: 200px; // tarot card shape (the picture sets the height)
     margin: 0 auto; // centred
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    background: $cream; // cream = card face (later a real image)
+    padding: 4px; // thin space between the gold frame and the picture
+    background: $cream; // shows while the picture loads
     border: 3px solid $gold;
     border-radius: 14px;
-    color: $navy;
+    box-shadow: 0 0 24px rgba(212, 175, 55, 0.4); // soft gold glow
     animation: card-flip-in 0.7s ease-out; // the card "turns over" when the page opens
 
     // People who turn off animations on their computer see no flip
@@ -131,25 +126,11 @@
     }
   }
 
-  &__symbol {
-    margin-bottom: 8px;
-    font-size: 56px;
-    line-height: 1;
-    color: $gold;
-  }
-
-  &__name {
-    margin: 0;
-    font-family: $font-heading; // Cinzel, like old card lettering
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  &__numeral {
-    margin: 0;
-    font-family: $font-heading;
-    font-size: 16px;
-    letter-spacing: 0.08em;
+  &__image {
+    display: block; // removes the small gap under images
+    width: 100%; // fills the frame
+    height: auto; // keeps the card's shape
+    border-radius: 9px; // rounded corners inside the frame
   }
 
   // "Hope after a hard time": our short, simple meaning
