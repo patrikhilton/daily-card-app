@@ -1,4 +1,6 @@
 @use "variables" as *;
+@use 'sass:color';
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap');
 
 * {
   box-sizing: border-box;
@@ -11,4 +13,23 @@ body {
   color: $cream;
   font-family: $font-body;
   line-height: 1.5;
+}
+
+//Customized scrillbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-navy-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: color.adjust($navy, $lightness: 10%);
+  border-radius: 4px;
+
+  &:hover {
+    background: $color-lavender-muted;
+  }
 }
