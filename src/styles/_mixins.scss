@@ -1,0 +1,24 @@
+@use 'variables' as *;
+
+//Mixing for responsive
+@mixin tablet {
+  @media (min-width: $tablet) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop) { @content; }
+}
+
+
+// Shared rounded button (lavender pill)
+@mixin pill-button {
+  min-height: 44px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 999px;
+  background: $lavender;
+  color: $navy;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}

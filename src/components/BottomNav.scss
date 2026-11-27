@@ -1,4 +1,6 @@
 @use "../styles/variables" as *;
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
 
 // Phone + tablet: a bar fixed to the bottom of the screen
 .bottom-nav {

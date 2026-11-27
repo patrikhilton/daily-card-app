@@ -1,0 +1,232 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'sass:color';
+
+.auth-screen {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    // --- Screen 1: Welcome Styles ---
+    &__welcome {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__logo-card {
+        width: 46px;
+        height: 68px;
+        border: 1.5px solid $gold;
+        border-radius: 4px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        &::after {
+            content: '';
+            width: 34px;
+            height: 56px;
+            border: 1px solid rgba($gold, 0.4);
+            border-radius: 2px;
+        }
+    }
+
+    &__title {
+        font-family: $font-heading;
+        color: $gold;
+        font-size: 29px;
+        font-weight: 600;
+        margin: 0 0 0.6rem 0;
+        line-height: 1.25;
+
+        @include tablet {
+            font-size: 2.1rem;
+        }
+    }
+
+    &__subtitle {
+        color: $color-lavender-muted;
+        font-size: 15px;
+        margin: 0 0 1.25rem 0;
+    }
+
+    &__promise {
+        color: $cream;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 14px;
+        margin: 0 0 3.5rem 0;
+
+        span {
+            color: $gold;
+            margin: 0 0.35rem;
+        }
+    }
+
+    // --- Form (Login & Sign up) Styles ---
+    &__form-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__form {
+        width: 100%;
+        margin-top: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: left;
+    }
+
+    &__label {
+        color: $cream;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    &__input-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0.9rem 1.1rem;
+        background-color: transparent;
+        border: 1.5px solid $lavender;
+        border-radius: 14px;
+        color: $cream;
+        font-family: $font-body;
+        font-size: 16px;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &--password {
+            padding-right: 3rem; // Eye icon space
+        }
+
+        &::placeholder {
+            color: rgba($color-lavender-muted, 0.55);
+        }
+
+        &:focus {
+            border-color: $gold;
+            box-shadow: 0 0 0 3px rgba($gold, 0.15);
+        }
+    }
+
+    &__eye-btn {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $color-lavender-muted;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+
+        &:hover {
+            color: $cream;
+        }
+    }
+
+    &__error {
+        color: $coral;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        margin-top: -0.25rem;
+        text-align: left;
+    }
+
+    &__error-icon {
+        flex-shrink: 0;
+    }
+
+    // --- Big Rounded Buttons ---
+    &__actions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+    }
+
+    &__btn {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        border-radius: 999px;
+        font-family: $font-body;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.15s ease, opacity 0.2s ease, background-color 0.2s ease;
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &--primary {
+            background-color: $lavender;
+            color: $bg-navy-dark;
+            border: none;
+
+            &:hover {
+                background-color: color.adjust($lavender, $lightness: 4%);
+            }
+        }
+
+        &--outline {
+            background-color: transparent;
+            color: $gold;
+            border: 1.5px solid $gold;
+
+            &:hover {
+                background-color: rgba($gold, 0.1);
+            }
+        }
+    }
+
+    // --- Switch Link (Bottom) ---
+    &__switch {
+        margin-top: 1.5rem;
+        font-size: 14px;
+        color: $color-lavender-muted;
+    }
+
+    &__link {
+        background: none;
+        border: none;
+        color: $gold;
+        font-family: $font-body;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 0;
+        margin-left: 0.35rem;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
