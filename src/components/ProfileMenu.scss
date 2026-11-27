@@ -1,0 +1,90 @@
+@use "../styles/variables" as *;
+
+// Profile button + menu (top right, next to "Tarot 22")
+.profile {
+  position: relative; // the menu is placed relative to this box
+  flex-shrink: 0; // never squeeze the button on small phones
+
+  // The button: a pill with the letter circle, name and arrow
+  &__button {
+    display: flex;
+    align-items: center; // lines everything up in the middle
+    gap: 8px; // space between circle, name and arrow
+    padding: 4px 14px 4px 4px; // less space on the left, so the circle sits near the edge
+    background: $plum; // plum = a box
+    border: 1.5px solid $lavender; // lavender = you can tap this
+    border-radius: 999px; // very round = pill shape
+    color: $cream;
+    font-family: $font-body;
+    font-size: 15px;
+    cursor: pointer; // hand cursor on hover
+
+    &:hover {
+      border-color: $gold; // gold border when the mouse is over it
+    }
+
+    &:focus-visible {
+      outline: 2px solid $gold; // visible ring when using the keyboard (Tab key)
+      outline-offset: 2px;
+    }
+  }
+
+  // The round letter "Q" inside the button
+  &__avatar {
+    width: 34px;
+    height: 34px; // same width and height = a perfect circle
+    border-radius: 50%; // 50% turns the square into a circle
+    display: flex;
+    align-items: center;
+    justify-content: center; // letter in the middle of the circle
+    background: $lavender;
+    color: $navy; // dark letter on the light circle
+    font-family: $font-heading;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &__name {
+    font-weight: 500;
+  }
+
+  &__chevron {
+    font-size: 10px; // small arrow: shows "this opens something"
+    color: $lavender;
+  }
+
+  // The menu: drops down under the button
+  &__menu {
+    position: absolute; // floats on top of the page
+    top: calc(100% + 6px); // just under the button
+    right: 0; // lines up with the right edge of the button
+    z-index: 10; // stays above the cards
+    min-width: 180px;
+    margin: 0;
+    padding: 6px;
+    list-style: none; // no bullet points
+    background: $plum;
+    border: 1.5px solid $lavender;
+    border-radius: 12px;
+    text-align: left;
+  }
+
+  &__item {
+    width: 100%; // the whole row can be clicked
+    padding: 10px 12px; // big enough for a finger on a phone
+    background: none;
+    border: none;
+    border-radius: 8px;
+    color: $cream;
+    font-family: $font-body;
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      background: $navy; // darker row under the mouse
+      outline: none;
+    }
+  }
+}

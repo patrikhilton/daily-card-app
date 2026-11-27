@@ -1,0 +1,196 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *; // the tablet / desktop screen-size rules (Tharanga moved them here)
+
+// Page 3: Home / Draw
+// One column on all screens: greeting, the cards in the middle, then album + streak
+.draw {
+  display: grid;
+  gap: 16px;
+  grid-template-areas:
+    "greeting"
+    "deck"
+    "stats";
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  text-align: center;
+
+  // (The profile button styles moved to components/ProfileMenu.scss)
+
+  &__greeting {
+    grid-area: greeting;
+  }
+
+  // "Good morning, Qiqi!": clean and neat (Inter, a simple modern font),
+  // so it looks different from the fancy gold "Tarot 22" title above
+  &__title {
+    margin: 0;
+    font-family: $font-body; // Inter: plain, tidy letters
+    font-size: 22px;
+    font-weight: 500; // medium, not too heavy
+    line-height: 1.2;
+    letter-spacing: -0.01em; // letters slightly closer = neater
+    color: $cream; // cream, not gold, so it doesn't compete with the title
+  }
+
+  &__username {
+    color: $lavender; // the name stands out softly
+  }
+
+  &__date {
+    margin: 4px 0 0;
+    font-family: $font-body; // simple, clean text
+    font-size: 13px; // small and calm, written exactly as typed: "Wednesday 18 November 2026"
+    color: $lavender;
+  }
+
+  &__deck {
+    grid-area: deck;
+    margin: 16px 0; // extra space above (greeting) and below (album boxes) the cards
+  }
+
+  // Instruction above the cards: "Take a slow breath..."
+  &__instruction {
+    margin: 0 0 20px; // space between the instruction and the cards
+    font-family: "Cormorant Garamond", Georgia, serif; // same calm old-book style as the tagline
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: $cream; // easy to read on navy
+    text-align: center; // always in the middle, above the cards
+  }
+
+  // The 3 face-down cards in a row
+  &__cards {
+    display: flex; // puts the 3 cards side by side in a row
+    justify-content: center; // keeps the row in the middle of the screen
+    gap: 8px; // space between the cards
+    margin-bottom: 16px; // space between the cards and the button
+  }
+
+  &__card-back {
+    width: 105px; // phone: 3 cards + gaps still fit on a small screen
+    height: 165px; // tarot card shape: taller than wide
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px; // the ★
+    color: $gold;
+    background: $plum;
+    border: 2px solid $gold;
+    border-radius: 12px;
+    padding: 0; // the card is a <button>: remove the browser's button padding
+    font-family: inherit; // ...and its default font
+    cursor: pointer; // hand cursor: "you can pick this card"
+
+    &:focus-visible {
+      outline: 2px solid $lavender; // ring when chosen with the Tab key
+      outline-offset: 4px;
+    }
+    transition: transform 0.25s ease, box-shadow 0.25s ease; // smooth change, not a jump
+
+    // Hover effect "lift and glow": the card rises, grows and glows gold
+    &:hover {
+      transform: translateY(-10px) scale(1.1); // up 10px and 10% bigger
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); // soft gold glow ($gold)
+    }
+
+    // People who turn off animations on their computer get no movement
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &__button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: $navy;
+    background: $gold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  &__hint {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: $lavender;
+  }
+
+  &__stats {
+    grid-area: stats;
+    display: flex;
+    gap: 8px;
+  }
+
+  &__box {
+    flex: 1;
+    margin: 0;
+    padding: 10px;
+    background: $plum;
+    border-radius: 8px;
+  }
+
+  // Album progress: "Album 8 / 22", bar, "14 new cards left"
+  &__album-text {
+    margin: 0;
+    color: $gold; // gold = important info
+  }
+
+  &__progress {
+    height: 6px; // thin bar
+    margin: 8px 0; // space above and below the bar
+    background: $navy; // empty part of the bar
+    border-radius: 3px; // round ends
+    overflow: hidden; // keeps the gold part inside the round ends
+  }
+
+  &__progress-fill {
+    height: 100%; // same height as the bar
+    background: $gold; // filled part of the bar
+  }
+
+  &__album-left {
+    margin: 0;
+    font-size: 14px;
+    color: $lavender; // lavender = less important info
+  }
+
+  // Streak: "🔥 3 days in a row" + a small reminder
+  &__streak-text {
+    margin: 0;
+    font-size: 18px; // a bit bigger: it's a reward
+    color: $gold; // gold = important info
+  }
+
+  &__streak-hint {
+    margin: 4px 0 0; // small space above
+    font-size: 14px;
+    color: $lavender; // lavender = less important info
+  }
+
+  // Tablet and desktop: text on the left, cards stay in the middle
+  @include tablet {
+    text-align: left;
+
+    &__deck {
+      text-align: center; // cards, button and hint in the middle of the page
+    }
+
+    &__title {
+      font-size: 24px; // a little bigger on larger screens
+    }
+
+    // Bigger cards on tablet and laptop, where there is more space
+    &__cards {
+      gap: 20px; // more space between the cards
+    }
+
+    &__card-back {
+      width: 160px;
+      height: 250px;
+      font-size: 64px; // bigger ★
+    }
+  }
+}

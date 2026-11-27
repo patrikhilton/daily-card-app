@@ -1,0 +1,119 @@
+@use "../styles/variables" as *;
+
+// Profile page: one narrow column, like Page 4
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; // the same space between every part
+  max-width: 400px; // narrow like a phone, also on a laptop
+  text-align: center;
+
+  // "← Back": small lavender text button, top left
+  &__back {
+    align-self: flex-start; // on the left, not in the middle
+    padding: 4px 0;
+    background: none;
+    border: none;
+    color: $lavender; // lavender = you can tap this
+    font-family: $font-body;
+    font-size: 15px;
+    cursor: pointer;
+
+    &:hover {
+      color: $gold;
+    }
+  }
+
+  // "My profile"
+  &__title {
+    margin: 0;
+    font-family: $font-heading; // Cinzel, like "My album"
+    font-size: 24px;
+    color: $gold; // gold = heading
+  }
+
+  // Avatar, name and email
+  &__user {
+    display: flex;
+    flex-direction: column;
+    align-items: center; // everything in the middle
+    gap: 4px;
+  }
+
+  // Big round letter, like the profile button but larger
+  &__avatar {
+    width: 80px;
+    height: 80px; // same width and height = a perfect circle
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center; // letter in the middle
+    border-radius: 50%; // square → circle
+    background: $lavender;
+    color: $navy; // dark letter on the light circle
+    font-family: $font-heading;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  &__name {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: $cream;
+  }
+
+  &__email {
+    margin: 0;
+    font-size: 14px;
+    color: $lavender; // lavender = less important info
+  }
+
+  // 3 progress boxes side by side
+  &__stats {
+    display: flex;
+    gap: 8px; // space between the boxes
+  }
+
+  &__stat {
+    flex: 1; // all 3 boxes the same width
+    padding: 12px 6px;
+    background: $plum; // plum = a box
+    border-radius: 10px;
+  }
+
+  &__number {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: $gold; // gold = important number
+  }
+
+  &__label {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: $lavender;
+  }
+
+  // Log out: coral outline, so it looks different from normal buttons
+  &__logout {
+    padding: 12px;
+    background: transparent;
+    border: 1.5px solid $coral; // coral = careful, this leaves the app
+    border-radius: 999px; // pill shape
+    color: $coral;
+    font-family: $font-body;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      background: $coral;
+      color: $navy; // dark text on coral
+    }
+
+    &:focus-visible {
+      outline: 2px solid $gold; // ring when using the Tab key
+      outline-offset: 2px;
+    }
+  }
+}
