@@ -1,5 +1,5 @@
 @use "variables" as *;
-@use 'sass:color';
+@use "sass:color";
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap');
 
 * {
@@ -15,7 +15,17 @@ body {
   line-height: 1.5;
 }
 
-//Customized scrillbar
+// Hidden on screen, still read by screen readers
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+// Customized scrollbar
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

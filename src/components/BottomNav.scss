@@ -1,0 +1,81 @@
+@use "../styles/variables" as *;
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+// Phone + tablet: a bar fixed to the bottom of the screen
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: env(safe-area-inset-bottom); // space for the iPhone home bar
+  background: $navy;
+  border-top: 1px solid $plum;
+
+  // Desktop: a row of tabs under the header instead
+  @include desktop {
+    position: static;
+    justify-content: center;
+    gap: 8px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 8px 16px;
+    border-top: none;
+    border-bottom: 1px solid $plum;
+  }
+
+  &__link {
+    flex: 1;
+    min-height: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: $lavender;
+    text-decoration: none;
+    font-size: 0.75rem;
+
+    @include desktop {
+      flex: 0 0 auto;
+      flex-direction: row;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-size: 1rem;
+    }
+
+    &:focus-visible {
+      outline: 3px solid $lavender;
+      outline-offset: -3px;
+    }
+
+    &--active {
+      color: $gold;
+      font-weight: 700;
+
+      @include desktop {
+        background: $plum;
+        color: $cream;
+      }
+    }
+  }
+
+  &__icon {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+}
+
+// Make room so page content isn't hidden behind the bar on phones
+body {
+  padding-bottom: calc(72px + env(safe-area-inset-bottom));
+
+  @include desktop {
+    padding-bottom: 0;
+  }
+}

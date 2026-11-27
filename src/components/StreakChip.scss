@@ -1,0 +1,14 @@
+@use "../styles/variables" as *;
+
+.streak-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 8px 14px;
+  border: 1px solid $gold;
+  border-radius: 999px;
+  background: $plum;
+  color: $cream;
+  font-size: 0.875rem;
+}
