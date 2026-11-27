@@ -5,8 +5,8 @@
 
 const PREFIX = 'tarot22:progress:'
 
-// What a brand-new player starts with
-function emptyProgress() {
+// What a brand-new player starts with (also used by App when nobody is logged in)
+export function emptyProgress() {
   return {
     collectedIds: [], // album: ids of collected cards, e.g. ["ar17", "ar03"]
     lastDrawDate: null, // the day of the last draw, e.g. "2026-11-19"
