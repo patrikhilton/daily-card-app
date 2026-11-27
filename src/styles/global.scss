@@ -1,6 +1,8 @@
 @use "variables" as *;
 @use 'sass:color';
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+// Google Fonts: Cinzel (headings), Inter (normal text),
+// Cinzel Decorative (the "Tarot 22" title, like old tarot lettering), Cormorant Garamond italic (tagline, like an old book)
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@1,500&family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap');
 
 * {
   box-sizing: border-box;

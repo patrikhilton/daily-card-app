@@ -1,4 +1,5 @@
 @use "../styles/variables" as *;
+@use "../styles/mixins" as *; // the tablet / desktop screen-size rules (Tharanga moved them here)
 
 // Page 3: Home / Draw
 // One column on all screens: greeting, the cards in the middle, then album + streak
