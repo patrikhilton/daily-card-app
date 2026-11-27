@@ -10,18 +10,25 @@ import Page6 from './pages/Page6'
 import './App.css'
 
 function App() {
-  // Fake for now. Later: the logged-in user from Tharanga's login part.
-  // Written once here, then given to the pages that need it (as a "prop").
+  // Fake for now. When Tharanga's login is merged, these come from his session (currentUser):
+  // - email: the team's primary key, used to save and load this player's progress
+  // - username: only for showing the name (greeting, profile button)
+  const email = 'qiqi@example.com'
   const username = 'Qiqi'
+
+  // Fake for now. Tharanga's App has handleLogout (clears the session and shows the login screen).
+  function handleLogout() {
+    console.log('Log out clicked: Tharanga\'s login part will handle this')
+  }
 
   // The player's saved progress: album, today's draw, streak and journal.
   // Loaded once from localStorage when the app opens.
-  const [progress, setProgress] = useState(() => loadProgress(username))
+  const [progress, setProgress] = useState(() => loadProgress(email))
 
   // Save to localStorage every time the progress changes
   useEffect(() => {
-    saveProgress(username, progress)
-  }, [username, progress])
+    saveProgress(email, progress)
+  }, [email, progress])
 
   const today = dateKey() // e.g. "2026-11-19"
   const drewToday = progress.lastDrawDate === today // only one draw per day
@@ -72,7 +79,7 @@ function App() {
             <h1 className="app-title">Tarot 22</h1>
             <p className="app-tagline">One card. One minute. One calm reflection.</p>
           </div>
-          <ProfileMenu username={username} />
+          <ProfileMenu username={username} onLogout={handleLogout} />
         </div>
         {/* Thin line between the title row and the page */}
         <hr className="app-divider" />

@@ -1,6 +1,7 @@
 // Saving the player's progress in the browser with localStorage.
 // localStorage keeps text even after a refresh or closing the browser (on this computer only).
-// Each user gets their own entry, e.g. "tarot22:progress:Qiqi".
+// Each user gets their own entry, keyed by their email (the team's primary key),
+// e.g. "tarot22:progress:qiqi@example.com". (Tharanga's login saves the session under "tarot22:session".)
 
 const PREFIX = 'tarot22:progress:'
 
@@ -16,9 +17,9 @@ function emptyProgress() {
 }
 
 // Reads a user's progress. If nothing is saved yet (or it can't be read), starts empty.
-export function loadProgress(username) {
+export function loadProgress(email) {
   try {
-    const text = localStorage.getItem(PREFIX + username) // saved text, or null
+    const text = localStorage.getItem(PREFIX + email) // saved text, or null
     if (!text) return emptyProgress()
     return { ...emptyProgress(), ...JSON.parse(text) } // JSON.parse turns the text back into an object
   } catch {
@@ -27,9 +28,9 @@ export function loadProgress(username) {
 }
 
 // Saves a user's progress. JSON.stringify turns the object into text, because localStorage only stores text.
-export function saveProgress(username, progress) {
+export function saveProgress(email, progress) {
   try {
-    localStorage.setItem(PREFIX + username, JSON.stringify(progress))
+    localStorage.setItem(PREFIX + email, JSON.stringify(progress))
   } catch {
     // storage full or blocked: the game still works, it just isn't saved
   }
