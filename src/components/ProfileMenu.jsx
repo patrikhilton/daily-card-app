@@ -5,8 +5,9 @@ import './ProfileMenu.scss' // styles for the profile button and menu
 // It lives in its own file so every page can use it.
 // Props from App.jsx:
 // - username: shown on the button (written in one place only)
+// - onOpenProfile: runs when "My profile" is clicked (App then shows the profile page)
 // - onLogout: runs when "Log out" is clicked (Tharanga's login part logs the user out)
-function ProfileMenu({ username, onLogout }) {
+function ProfileMenu({ username, onOpenProfile, onLogout }) {
   const initial = username[0].toUpperCase() // first letter, e.g. "Q"
 
   // Is the menu open? Starts closed (false).
@@ -29,8 +30,15 @@ function ProfileMenu({ username, onLogout }) {
       {menuOpen && (
         <ul className="profile__menu" role="menu">
           <li>
-            {/* Later: open the profile page */}
-            <button className="profile__item" role="menuitem" onClick={() => setMenuOpen(false)}>
+            {/* Closes the menu, then opens the profile page */}
+            <button
+              className="profile__item"
+              role="menuitem"
+              onClick={() => {
+                setMenuOpen(false)
+                onOpenProfile()
+              }}
+            >
               👤 My profile
             </button>
           </li>
