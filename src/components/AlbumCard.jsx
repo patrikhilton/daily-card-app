@@ -1,6 +1,9 @@
+import { useState } from "react";
 import "./AlbumCard.scss";
 
 function AlbumCard({ card, isCollected, onOpen }) {
+  const [imageFailed, setImageFailed] = useState(false);
+
   if (!isCollected) {
     return (
       <div className="album-card album-card--locked">
@@ -11,12 +14,23 @@ function AlbumCard({ card, isCollected, onOpen }) {
     );
   }
 
+  const showImage = !imageFailed;
+
   return (
     <button
       type="button"
-      className="album-card album-card--collected"
+      className={`album-card album-card--collected${showImage ? " album-card--image" : ""}`}
       onClick={onOpen}
     >
+      {showImage && (
+        <img
+          className="album-card__image"
+          src={`/cards/${card.id}.jpg`}
+          alt=""
+          loading="lazy"
+          onError={() => setImageFailed(true)}
+        />
+      )}
       <span className="album-card__numeral">{card.numeral}</span>
       <span className="album-card__name">{card.name}</span>
     </button>
